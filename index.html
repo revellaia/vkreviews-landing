@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VK Reviews — Reviews da Shopee no seu Shopify</title>
+<meta name="description" content="Importe avaliações reais da Shopee para sua loja Shopify em segundos. Sem código, sem configuração técnica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --star:#f59e0b;--sg:rgba(245,158,11,.12);--sb:rgba(245,158,11,.18);
+  --green:#22c55e;
+  --bg:#060606;--b2:#0a0a0a;--b3:#0f0f0f;--b4:#141414;--b5:#1a1a1a;
+  --bd:rgba(255,255,255,.06);--bd2:rgba(255,255,255,.1);--bd3:rgba(255,255,255,.16);
+  --t:#f0f0f0;--t2:#888;--t3:#3a3a3a;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--t);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1}
+a{text-decoration:none;color:inherit}
+img{display:block}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(6,6,6,.94);border-color:var(--bd2);backdrop-filter:blur(20px)}
+.logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;display:flex;align-items:center;gap:9px;letter-spacing:-.02em}
+.logo-star{color:var(--star);font-size:20px;line-height:1}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:13px;font-weight:500;color:var(--t2);transition:color .2s}
+.nav-links a:hover{color:var(--t)}
+.nav-cta{background:var(--star);color:#000;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;padding:9px 22px;border-radius:8px;transition:opacity .15s,transform .15s}
+.nav-cta:hover{opacity:.88;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;max-width:1280px;margin:0 auto;padding:100px 48px 80px}
+.hero-l{padding-right:40px}
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--sg);border:1px solid var(--sb);border-radius:100px;padding:5px 14px 5px 10px;font-size:11px;font-weight:600;color:var(--star);margin-bottom:40px;letter-spacing:.02em}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--star);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.hero-h1{font-family:'Syne',sans-serif;font-size:clamp(48px,5.5vw,82px);font-weight:800;line-height:.9;letter-spacing:-.04em;margin-bottom:32px}
+.hero-h1 .amber{color:var(--star)}
+.hero-h1 .outline{color:transparent;-webkit-text-stroke:1.5px var(--b5)}
+.hero-sub{font-size:17px;font-weight:400;color:var(--t2);line-height:1.75;max-width:400px;margin-bottom:44px}
+.hero-sub strong{color:var(--t);font-weight:500}
+.hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.btn-primary{background:var(--star);color:#000;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;padding:15px 30px;border-radius:10px;display:inline-flex;align-items:center;gap:9px;transition:opacity .15s,transform .15s;box-shadow:0 0 56px rgba(245,158,11,.2)}
+.btn-primary:hover{opacity:.9;transform:translateY(-2px)}
+.btn-ghost{font-size:14px;font-weight:500;color:var(--t2);padding:14px 24px;border-radius:10px;border:1px solid var(--bd2);transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--bd3);color:var(--t)}
+.hero-note{font-size:12px;color:var(--t3);display:flex;align-items:center;gap:6px}
+.hero-note .ok{color:var(--green);font-weight:600}
+
+/* WIDGET MOCKUP */
+.hero-r{position:relative}
+.widget-frame{background:var(--b2);border:1px solid var(--bd2);border-radius:20px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.04)}
+.frame-bar{background:var(--b3);padding:13px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bd)}
+.frame-dot{width:9px;height:9px;border-radius:50%}
+.frame-url{flex:1;margin:0 12px;background:var(--b4);border-radius:5px;padding:5px 12px;font-family:'DM Mono',monospace;font-size:10px;color:var(--t3)}
+.frame-body{padding:32px 28px}
+
+/* Widget inside frame — our actual minimalist widget */
+.w-heading{font-size:15px;font-weight:700;color:var(--t);padding-bottom:14px;border-bottom:2px solid var(--t);display:inline-block;margin-bottom:28px;letter-spacing:-.01em}
+.w-summary{display:flex;gap:32px;align-items:center;margin-bottom:28px}
+.w-score-num{font-family:'Syne',sans-serif;font-size:52px;font-weight:900;line-height:1;letter-spacing:-.04em;color:var(--t)}
+.w-score-stars{display:flex;gap:3px;margin:8px 0 5px}
+.w-score-count{font-size:10px;color:var(--t2);text-transform:uppercase;letter-spacing:.04em}
+.w-bars{flex:1;display:flex;flex-direction:column;gap:7px}
+.w-bar-row{display:flex;align-items:center;gap:8px}
+.w-bar-lbl{font-size:10px;color:var(--t3);width:8px;text-align:right}
+.w-bar-track{flex:1;height:3px;background:var(--b5);border-radius:99px;overflow:hidden}
+.w-bar-fill{height:100%;background:var(--star);border-radius:99px}
+.w-bar-n{font-size:10px;color:var(--t3);width:16px;text-align:right}
+.w-list{border-top:1px solid var(--bd);display:flex;flex-direction:column}
+.w-card{padding:16px 0;border-bottom:1px solid var(--bd)}
+.w-card:last-child{border-bottom:none;padding-bottom:0}
+.w-stars{display:flex;gap:2px;margin-bottom:7px}
+.w-meta{display:flex;align-items:center;gap:5px;margin-bottom:8px;flex-wrap:wrap}
+.w-name{font-size:11px;font-weight:700;color:var(--t)}
+.w-dot{color:var(--t3);font-size:11px}
+.w-ok{font-size:10px;color:var(--green);font-weight:500}
+.w-date{font-size:10px;color:var(--t3)}
+.w-txt{font-size:11px;color:var(--t2);line-height:1.6}
+
+/* STATS STRIP */
+.stats-strip{border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);display:flex;align-items:stretch;justify-content:center}
+.stat{flex:1;max-width:260px;padding:40px 32px;text-align:center;border-right:1px solid var(--bd)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;line-height:1;letter-spacing:-.04em;color:#fff;margin-bottom:8px}
+.stat-n span{color:var(--star)}
+.stat-l{font-size:13px;color:var(--t2);font-weight:500}
+
+/* SECTIONS */
+.section{max-width:1100px;margin:0 auto;padding:96px 48px}
+.section-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--star);letter-spacing:.14em;text-transform:uppercase;margin-bottom:20px}
+.section-h2{font-family:'Syne',sans-serif;font-size:clamp(36px,4vw,56px);font-weight:800;line-height:.95;letter-spacing:-.035em;margin-bottom:20px}
+.section-h2 span{color:var(--star)}
+.section-sub{font-size:16px;color:var(--t2);line-height:1.7;max-width:480px}
+
+/* COMO FUNCIONA */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.step{background:var(--b2);border:1px solid var(--bd);border-radius:16px;padding:36px;position:relative;overflow:hidden;transition:border-color .2s}
+.step::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0% 0%,var(--sg) 0%,transparent 60%);opacity:0;transition:opacity .3s}
+.step:hover{border-color:var(--sb)}
+.step:hover::before{opacity:1}
+.step-num{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--star);letter-spacing:.1em;margin-bottom:20px}
+.step-icon{width:48px;height:48px;background:var(--sg);border:1px solid var(--sb);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;font-size:20px}
+.step-h{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--t);margin-bottom:12px;letter-spacing:-.02em}
+.step-p{font-size:14px;color:var(--t2);line-height:1.7}
+.step-demo{margin-top:24px;background:var(--b3);border:1px solid var(--bd);border-radius:10px;padding:14px 16px}
+.step-demo-url{display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;color:var(--t3);margin-bottom:0}
+.step-demo-url .cursor{width:1px;height:13px;background:var(--star);display:inline-block;margin-left:2px;animation:blink .9s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.step-demo-tag{display:inline-flex;align-items:center;gap:6px;background:var(--sg);border:1px solid var(--sb);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--star);font-weight:600}
+.step-demo-success{display:flex;align-items:center;gap:8px;color:var(--green);font-size:13px;font-weight:600}
+
+/* DEPOIMENTOS */
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
+.tcard{background:var(--b2);border:1px solid var(--bd);border-radius:16px;padding:32px;position:relative;overflow:hidden}
+.tcard::after{content:'"';position:absolute;right:24px;top:16px;font-family:'Syne',sans-serif;font-size:96px;font-weight:800;color:var(--bd2);line-height:1;pointer-events:none}
+.tcard-stars{display:flex;gap:3px;margin-bottom:20px}
+.tcard-text{font-size:15px;color:var(--t);line-height:1.7;margin-bottom:24px;font-weight:400;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:12px}
+.tcard-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;text-transform:uppercase;font-family:'Syne',sans-serif}
+.tcard-name{font-size:13px;font-weight:700;color:var(--t);margin-bottom:2px}
+.tcard-store{font-size:11px;color:var(--t2);font-weight:500}
+
+/* PREÇOS */
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
+.pcard{background:var(--b2);border:1px solid var(--bd);border-radius:20px;padding:36px;position:relative;transition:border-color .2s}
+.pcard.featured{background:var(--b3);border-color:var(--sb);box-shadow:0 0 0 1px var(--sb),0 24px 60px rgba(245,158,11,.08)}
+.pcard-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--star);color:#000;font-size:11px;font-weight:700;padding:4px 14px;border-radius:100px;white-space:nowrap;letter-spacing:.03em}
+.pcard-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--t2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px}
+.pcard-price{display:flex;align-items:baseline;gap:4px;margin-bottom:8px}
+.pcard-currency{font-size:16px;font-weight:600;color:var(--t);margin-top:4px}
+.pcard-amount{font-family:'Syne',sans-serif;font-size:52px;font-weight:900;line-height:1;letter-spacing:-.04em;color:#fff}
+.pcard-period{font-size:13px;color:var(--t2)}
+.pcard-desc{font-size:13px;color:var(--t2);margin-bottom:32px;line-height:1.5}
+.pcard-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.pcard-features li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--t)}
+.pcard-features li::before{content:'';width:16px;height:16px;background:var(--sg);border:1px solid var(--sb);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2 2 4-4' stroke='%23f59e0b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+.pcard-cta{display:block;width:100%;padding:14px;border-radius:10px;font-size:14px;font-weight:700;text-align:center;transition:opacity .15s,transform .15s;font-family:'DM Sans',sans-serif;cursor:pointer;border:none}
+.pcard-cta.amber{background:var(--star);color:#000}
+.pcard-cta.outline{background:transparent;border:1px solid var(--bd2);color:var(--t)}
+.pcard-cta:hover{opacity:.88;transform:translateY(-1px)}
+
+/* CTA BANNER */
+.cta-banner{background:var(--b2);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:80px 48px;text-align:center}
+.cta-banner h2{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.04em;margin-bottom:20px;line-height:1}
+.cta-banner h2 span{color:var(--star)}
+.cta-banner p{font-size:16px;color:var(--t2);margin-bottom:40px}
+.cta-banner .btn-primary{display:inline-flex;margin:0 auto}
+
+/* FOOTER */
+footer{max-width:1100px;margin:0 auto;padding:48px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--bd)}
+.footer-logo{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;display:flex;align-items:center;gap:7px}
+.footer-logo .s{color:var(--star)}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:var(--t3);transition:color .2s}
+.footer-links a:hover{color:var(--t2)}
+.footer-copy{font-size:12px;color:var(--t3)}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero{grid-template-columns:1fr;gap:48px;text-align:center;padding:80px 24px 60px}
+  .hero-l{padding-right:0}
+  .hero-sub{margin:0 auto 44px}
+  .hero-actions{justify-content:center}
+  .hero-note{justify-content:center}
+  .hero-r{max-width:520px;margin:0 auto}
+  .steps,.testimonials,.pricing{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:20px;text-align:center}
+  .footer-links{flex-wrap:wrap;justify-content:center}
+  .nav-links{display:none}
+}
+@media(max-width:640px){
+  nav{padding:0 20px}
+  .hero{padding:80px 20px 48px}
+  .section{padding:64px 20px}
+  .stats-strip{flex-wrap:wrap}
+  .stat{min-width:50%;border-right:none;border-bottom:1px solid var(--bd);padding:28px}
+  .cta-banner{padding:60px 20px}
+  footer{padding:32px 20px}
+}
+
+/* SVG star helper */
+.star-svg{display:inline-block;line-height:0}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">
+    <span class="logo-star">★</span>
+    VK Reviews
+  </div>
+  <div class="nav-links">
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#precos">Preços</a>
+  </div>
+  <a href="#precos" class="nav-cta">Testar grátis</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l fade-up">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Integração Shopee × Shopify — agora disponível
+    </div>
+    <h1 class="hero-h1">
+      Reviews<br>
+      <em class="amber">reais.</em><br>
+      <em class="outline">Vendas</em><br>
+      reais.
+    </h1>
+    <p class="hero-sub">
+      Importe avaliações da Shopee para sua loja Shopify em segundos.
+      <strong>Sem código, sem configuração técnica</strong> — só cole o link do produto.
+    </p>
+    <div class="hero-actions">
+      <a href="#precos" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        Testar 10 imports grátis
+      </a>
+      <a href="#como-funciona" class="btn-ghost">Ver como funciona ↓</a>
+    </div>
+    <p class="hero-note"><span class="ok">✓</span> Sem cartão de crédito &nbsp;·&nbsp; <span class="ok">✓</span> Cancele quando quiser</p>
+  </div>
+
+  <div class="hero-r fade-up" style="animation-delay:.15s">
+    <div class="widget-frame">
+      <div class="frame-bar">
+        <div class="frame-dot" style="background:#ff5f57"></div>
+        <div class="frame-dot" style="background:#febc2e"></div>
+        <div class="frame-dot" style="background:#28c840"></div>
+        <div class="frame-url">sualojaexemplo.myshopify.com/products/produto-demo</div>
+      </div>
+      <div class="frame-body">
+        <span class="w-heading">Avaliações dos Clientes</span>
+        <div class="w-summary">
+          <div>
+            <div class="w-score-num">4.8</div>
+            <div class="w-score-stars">
+              <!-- 4 full stars -->
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <!-- half star -->
+              <svg width="14" height="14" viewBox="0 0 20 20"><defs><linearGradient id="hg"><stop offset="55%" stop-color="#f59e0b"/><stop offset="55%" stop-color="#3a3a3a"/></linearGradient></defs><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="url(#hg)"/></svg>
+            </div>
+            <div class="w-score-count">47 avaliações</div>
+          </div>
+          <div class="w-bars">
+            <div class="w-bar-row"><span class="w-bar-lbl">5</span><div class="w-bar-track"><div class="w-bar-fill" style="width:88%"></div></div><span class="w-bar-n">41</span></div>
+            <div class="w-bar-row"><span class="w-bar-lbl">4</span><div class="w-bar-track"><div class="w-bar-fill" style="width:10%"></div></div><span class="w-bar-n">5</span></div>
+            <div class="w-bar-row"><span class="w-bar-lbl">3</span><div class="w-bar-track"><div class="w-bar-fill" style="width:2%"></div></div><span class="w-bar-n">1</span></div>
+            <div class="w-bar-row"><span class="w-bar-lbl">2</span><div class="w-bar-track"><div class="w-bar-fill" style="width:0%"></div></div><span class="w-bar-n">0</span></div>
+            <div class="w-bar-row"><span class="w-bar-lbl">1</span><div class="w-bar-track"><div class="w-bar-fill" style="width:0%"></div></div><span class="w-bar-n">0</span></div>
+          </div>
+        </div>
+        <div class="w-list">
+          <div class="w-card">
+            <div class="w-stars">
+              <svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <div class="w-meta"><span class="w-name">ana.silva</span><span class="w-dot">·</span><span class="w-ok">✓ Compra verificada</span><span class="w-dot">·</span><span class="w-date">12/05/2026</span></div>
+            <p class="w-txt">Produto incrível, chegou antes do prazo. Qualidade excelente!</p>
+          </div>
+          <div class="w-card">
+            <div class="w-stars">
+              <svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="11" height="11" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <div class="w-meta"><span class="w-name">carlos.m92</span><span class="w-dot">·</span><span class="w-ok">✓ Compra verificada</span><span class="w-dot">·</span><span class="w-date">08/05/2026</span></div>
+            <p class="w-txt">Superou minhas expectativas. Recomendo muito!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip fade-up">
+  <div class="stat"><div class="stat-n">50<span>+</span></div><div class="stat-l">Reviews importados de uma vez</div></div>
+  <div class="stat"><div class="stat-n"><span>~</span>30<span>s</span></div><div class="stat-l">Tempo médio de importação</div></div>
+  <div class="stat"><div class="stat-n">4.8<span>★</span></div><div class="stat-l">Média típica de produtos Shopee</div></div>
+  <div class="stat"><div class="stat-n">0</div><div class="stat-l">Linhas de código necessárias</div></div>
+</div>
+
+<!-- COMO FUNCIONA -->
+<section class="section" id="como-funciona">
+  <div class="fade-up">
+    <div class="section-label">Como funciona</div>
+    <h2 class="section-h2">Três passos.<br><span>Reviews ao vivo.</span></h2>
+    <p class="section-sub">Do link da Shopee às avaliações na sua loja Shopify. Sem código, sem consultoria, sem dor de cabeça.</p>
+  </div>
+  <div class="steps">
+    <div class="step fade-up">
+      <div class="step-num">01 —</div>
+      <div class="step-icon">🔗</div>
+      <div class="step-h">Cole o link do produto</div>
+      <p class="step-p">Copie a URL do produto na Shopee e cole no painel VK Reviews. É só isso.</p>
+      <div class="step-demo">
+        <div class="step-demo-url">shopee.com.br/produto-i.123<span class="cursor"></span></div>
+      </div>
+    </div>
+    <div class="step fade-up" style="transition-delay:.1s">
+      <div class="step-num">02 —</div>
+      <div class="step-icon">🛍️</div>
+      <div class="step-h">Escolha o produto Shopify</div>
+      <p class="step-p">Selecione em qual produto da sua loja Shopify os reviews vão aparecer.</p>
+      <div class="step-demo" style="display:flex;align-items:center;gap:8px">
+        <span class="step-demo-tag">✓ Tênis Runner Pro</span>
+        <span style="font-size:11px;color:var(--t3)">selecionado</span>
+      </div>
+    </div>
+    <div class="step fade-up" style="transition-delay:.2s">
+      <div class="step-num">03 —</div>
+      <div class="step-icon">⚡</div>
+      <div class="step-h">Pronto — reviews ao vivo</div>
+      <p class="step-p">As avaliações aparecem automaticamente na página do produto. Design responsivo, nativo na sua loja.</p>
+      <div class="step-demo">
+        <div class="step-demo-success">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          47 reviews publicados
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section" id="depoimentos" style="padding-top:0">
+  <div class="fade-up">
+    <div class="section-label">Depoimentos</div>
+    <h2 class="section-h2">Lojistas que já<br><span>convertem mais.</span></h2>
+  </div>
+  <div class="testimonials">
+    <div class="tcard fade-up">
+      <div class="tcard-stars">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="tcard-text">"Minha taxa de conversão subiu 34% no primeiro mês. Os clientes confiam mais quando veem reviews reais de outros compradores brasileiros."</p>
+      <div class="tcard-author">
+        <div class="tcard-av" style="background:#1a1a2e">J</div>
+        <div>
+          <div class="tcard-name">Juliana Alves</div>
+          <div class="tcard-store">Boutique da Ju · Moda feminina, SP</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard fade-up" style="transition-delay:.1s">
+      <div class="tcard-stars">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="tcard-text">"Em 2 minutos tinha reviews reais na minha loja. Meus clientes querem ver avaliações de compradores brasileiros — o VK entregou exatamente isso."</p>
+      <div class="tcard-author">
+        <div class="tcard-av" style="background:#0f3460">M</div>
+        <div>
+          <div class="tcard-name">Marcos Andrade</div>
+          <div class="tcard-store">TechGadgets BR · Eletrônicos, RJ</div>
+        </div>
+      </div>
+    </div>
+    <div class="tcard fade-up" style="transition-delay:.2s">
+      <div class="tcard-stars">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg><svg width="14" height="14" viewBox="0 0 20 20" fill="#f59e0b"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="tcard-text">"Finalmente uma solução que entende o mercado brasileiro. Setup em minutos, resultado imediato. Melhor investimento que fiz na loja esse ano."</p>
+      <div class="tcard-author">
+        <div class="tcard-av" style="background:#2d6a4f">C</div>
+        <div>
+          <div class="tcard-name">Camila Souza</div>
+          <div class="tcard-store">Casa Bela Decor · Casa e Decoração, MG</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇOS -->
+<section class="section" id="precos" style="padding-top:0">
+  <div class="fade-up">
+    <div class="section-label">Planos</div>
+    <h2 class="section-h2">Simples.<br><span>Sem surpresas.</span></h2>
+    <p class="section-sub">Comece grátis. Escale quando precisar. Cancele quando quiser.</p>
+  </div>
+  <div class="pricing">
+    <div class="pcard fade-up">
+      <div class="pcard-name">Starter</div>
+      <div class="pcard-price">
+        <span class="pcard-currency">R$</span>
+        <span class="pcard-amount">0</span>
+        <span class="pcard-period">/mês</span>
+      </div>
+      <p class="pcard-desc">Para testar e validar</p>
+      <ul class="pcard-features">
+        <li>1 produto</li>
+        <li>10 reviews importados</li>
+        <li>Widget responsivo</li>
+        <li>Suporte por email</li>
+      </ul>
+      <a href="#" class="pcard-cta outline">Começar grátis</a>
+    </div>
+    <div class="pcard featured fade-up" style="transition-delay:.1s">
+      <div class="pcard-badge">Mais popular</div>
+      <div class="pcard-name">Pro</div>
+      <div class="pcard-price">
+        <span class="pcard-currency">R$</span>
+        <span class="pcard-amount">49</span>
+        <span class="pcard-period">/mês</span>
+      </div>
+      <p class="pcard-desc">Para lojas em crescimento</p>
+      <ul class="pcard-features">
+        <li>5 produtos</li>
+        <li>200 reviews por produto</li>
+        <li>Fotos nas avaliações</li>
+        <li>Widget premium com filtros</li>
+        <li>Suporte prioritário</li>
+      </ul>
+      <a href="#" class="pcard-cta amber">Assinar Pro</a>
+    </div>
+    <div class="pcard fade-up" style="transition-delay:.2s">
+      <div class="pcard-name">Scale</div>
+      <div class="pcard-price">
+        <span class="pcard-currency">R$</span>
+        <span class="pcard-amount">99</span>
+        <span class="pcard-period">/mês</span>
+      </div>
+      <p class="pcard-desc">Para operações maiores</p>
+      <ul class="pcard-features">
+        <li>Produtos ilimitados</li>
+        <li>Reviews ilimitados</li>
+        <li>Importação automática</li>
+        <li>API de acesso</li>
+        <li>Suporte dedicado</li>
+      </ul>
+      <a href="#" class="pcard-cta outline">Falar com vendas</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner fade-up">
+  <h2>Prova social que<br><span>realmente converte.</span></h2>
+  <p>Comece com 10 imports grátis. Sem cartão de crédito.</p>
+  <a href="#" class="btn-primary">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+    Testar grátis agora
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span class="s">★</span> VK Reviews</div>
+  <div class="footer-links">
+    <a href="#">Termos de uso</a>
+    <a href="#">Privacidade</a>
+    <a href="#">Suporte</a>
+    <a href="mailto:contato@vkreviews.com">contato@vkreviews.com</a>
+  </div>
+  <div class="footer-copy">© 2026 VK Reviews</div>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20)
+})
+
+// Fade up on scroll
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'})
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el))
+</script>
+</body>
+</html>
