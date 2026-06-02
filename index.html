@@ -126,23 +126,31 @@ nav.scrolled{background:rgba(6,6,6,.94);border-color:var(--bd2);backdrop-filter:
 .tcard-store{font-size:11px;color:var(--t2);font-weight:500}
 
 /* PREÇOS */
-.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:64px}
-.pcard{background:var(--b2);border:1px solid var(--bd);border-radius:20px;padding:36px;position:relative;transition:border-color .2s}
-.pcard.featured{background:var(--b3);border-color:var(--sb);box-shadow:0 0 0 1px var(--sb),0 24px 60px rgba(245,158,11,.08)}
-.pcard-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--star);color:#000;font-size:11px;font-weight:700;padding:4px 14px;border-radius:100px;white-space:nowrap;letter-spacing:.03em}
-.pcard-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--t2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px}
-.pcard-price{display:flex;align-items:baseline;gap:4px;margin-bottom:8px}
-.pcard-currency{font-size:16px;font-weight:600;color:var(--t);margin-top:4px}
-.pcard-amount{font-family:'Syne',sans-serif;font-size:52px;font-weight:900;line-height:1;letter-spacing:-.04em;color:#fff}
-.pcard-period{font-size:13px;color:var(--t2)}
-.pcard-desc{font-size:13px;color:var(--t2);margin-bottom:32px;line-height:1.5}
-.pcard-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
-.pcard-features li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--t)}
-.pcard-features li::before{content:'';width:16px;height:16px;background:var(--sg);border:1px solid var(--sb);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2 2 4-4' stroke='%23f59e0b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
-.pcard-cta{display:block;width:100%;padding:14px;border-radius:10px;font-size:14px;font-weight:700;text-align:center;transition:opacity .15s,transform .15s;font-family:'DM Sans',sans-serif;cursor:pointer;border:none}
-.pcard-cta.amber{background:var(--star);color:#000}
-.pcard-cta.outline{background:transparent;border:1px solid var(--bd2);color:var(--t)}
-.pcard-cta:hover{opacity:.88;transform:translateY(-1px)}
+.price-tabs{display:flex;gap:6px;margin-top:52px;margin-bottom:36px;background:var(--b2);border:1px solid var(--bd);border-radius:14px;padding:6px;width:fit-content}
+.ptab{position:relative;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--t2);padding:10px 20px;border-radius:9px;border:none;background:transparent;cursor:pointer;transition:color .2s,background .2s;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.ptab:hover{color:var(--t)}
+.ptab.active{background:var(--b4);color:var(--t);border:1px solid var(--bd2)}
+.ptab-save{background:var(--star);color:#000;font-size:10px;font-weight:800;padding:2px 7px;border-radius:100px;letter-spacing:.02em}
+.price-main{background:var(--b2);border:1px solid var(--bd2);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 360px}
+.pml{padding:48px;border-right:1px solid var(--bd)}
+.pml-tag{font-family:'DM Mono',monospace;font-size:11px;color:var(--star);letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px}
+.pml-features{list-style:none;display:flex;flex-direction:column;gap:16px;margin-bottom:0}
+.pml-features li{display:flex;align-items:center;gap:12px;font-size:15px;color:var(--t);line-height:1.4}
+.pml-features .check{width:20px;height:20px;background:var(--sg);border:1px solid var(--sb);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.pmr{padding:48px;display:flex;flex-direction:column;justify-content:space-between;background:var(--b3)}
+.pmr-period{font-family:'DM Mono',monospace;font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px;text-transform:uppercase}
+.pmr-price{margin-bottom:6px}
+.pmr-currency{font-size:18px;font-weight:700;color:var(--t);vertical-align:top;line-height:2}
+.pmr-amount{font-family:'Syne',sans-serif;font-size:72px;font-weight:900;line-height:1;letter-spacing:-.05em;color:#fff;transition:opacity .12s}
+.pmr-mo{font-size:14px;color:var(--t2);margin-bottom:6px}
+.pmr-total{font-size:13px;color:var(--t3);margin-bottom:8px}
+.pmr-save{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:100px;padding:4px 12px;font-size:12px;font-weight:700;color:var(--green);margin-bottom:28px}
+.pmr-nosave{height:33px;margin-bottom:28px}
+.pmr-cta{display:block;width:100%;padding:16px;border-radius:12px;font-size:15px;font-weight:700;text-align:center;background:var(--star);color:#000;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;transition:opacity .15s,transform .15s;box-shadow:0 0 40px rgba(245,158,11,.15)}
+.pmr-cta:hover{opacity:.88;transform:translateY(-2px)}
+.pmr-note{font-size:11px;color:var(--t3);text-align:center;margin-top:14px}
+@media(max-width:1024px){.price-main{grid-template-columns:1fr}.pml{border-right:none;border-bottom:1px solid var(--bd)}}
+@media(max-width:640px){.price-tabs{flex-wrap:wrap;width:100%}.ptab{flex:1;justify-content:center}.pml,.pmr{padding:32px}}
 
 /* CTA BANNER */
 .cta-banner{background:var(--b2);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:80px 48px;text-align:center}
@@ -389,61 +397,46 @@ footer{max-width:1100px;margin:0 auto;padding:48px;display:flex;align-items:cent
 <!-- PREÇOS -->
 <section class="section" id="precos" style="padding-top:0">
   <div class="fade-up">
-    <div class="section-label">Planos</div>
-    <h2 class="section-h2">Simples.<br><span>Sem surpresas.</span></h2>
-    <p class="section-sub">Comece grátis. Escale quando precisar. Cancele quando quiser.</p>
+    <div class="section-label">Preços</div>
+    <h2 class="section-h2">Uma assinatura.<br><span>Tudo incluso.</span></h2>
+    <p class="section-sub">Produtos ilimitados, reviews ilimitados, widget premium — em qualquer plano. Só escolha o período.</p>
   </div>
-  <div class="pricing">
-    <div class="pcard fade-up">
-      <div class="pcard-name">Starter</div>
-      <div class="pcard-price">
-        <span class="pcard-currency">R$</span>
-        <span class="pcard-amount">0</span>
-        <span class="pcard-period">/mês</span>
-      </div>
-      <p class="pcard-desc">Para testar e validar</p>
-      <ul class="pcard-features">
-        <li>1 produto</li>
-        <li>10 reviews importados</li>
-        <li>Widget responsivo</li>
-        <li>Suporte por email</li>
+
+  <div class="price-tabs fade-up">
+    <button class="ptab active" data-period="Mensal" data-price="39,90" data-total="R$39,90 cobrado mensalmente" data-save="">Mensal</button>
+    <button class="ptab" data-period="Trimestral" data-price="33,90" data-total="R$101,70 cobrado a cada 3 meses" data-save="Economize 15% vs mensal">Trimestral <span class="ptab-save">-15%</span></button>
+    <button class="ptab" data-period="Semestral" data-price="24,90" data-total="R$149,40 cobrado a cada 6 meses" data-save="Economize 37% vs mensal">Semestral <span class="ptab-save">-37%</span></button>
+    <button class="ptab" data-period="Anual" data-price="19,90" data-total="R$238,80 cobrado anualmente" data-save="Economize 50% vs mensal">Anual <span class="ptab-save">-50%</span></button>
+  </div>
+
+  <div class="price-main fade-up">
+    <div class="pml">
+      <div class="pml-tag">Todos os planos incluem</div>
+      <ul class="pml-features">
+        <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Produtos ilimitados para importar reviews</li>
+        <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Reviews ilimitados por produto</li>
+        <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Fotos nas avaliações (quando disponíveis)</li>
+        <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Widget responsivo nativo no Shopify</li>
+        <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Score + barras de distribuição</li>
+        <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Importação em segundos — sem código</li>
+        <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Suporte em português</li>
+        <li><span class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Cancele quando quiser</li>
       </ul>
-      <a href="#" class="pcard-cta outline">Começar grátis</a>
     </div>
-    <div class="pcard featured fade-up" style="transition-delay:.1s">
-      <div class="pcard-badge">Mais popular</div>
-      <div class="pcard-name">Pro</div>
-      <div class="pcard-price">
-        <span class="pcard-currency">R$</span>
-        <span class="pcard-amount">49</span>
-        <span class="pcard-period">/mês</span>
+    <div class="pmr">
+      <div>
+        <div class="pmr-period" id="pmr-period">MENSAL</div>
+        <div class="pmr-price">
+          <span class="pmr-currency">R$</span><span class="pmr-amount" id="pmr-amount">39,90</span>
+        </div>
+        <div class="pmr-mo">/mês</div>
+        <div class="pmr-total" id="pmr-total">R$39,90 cobrado mensalmente</div>
+        <div id="pmr-save" class="pmr-nosave"></div>
       </div>
-      <p class="pcard-desc">Para lojas em crescimento</p>
-      <ul class="pcard-features">
-        <li>5 produtos</li>
-        <li>200 reviews por produto</li>
-        <li>Fotos nas avaliações</li>
-        <li>Widget premium com filtros</li>
-        <li>Suporte prioritário</li>
-      </ul>
-      <a href="#" class="pcard-cta amber">Assinar Pro</a>
-    </div>
-    <div class="pcard fade-up" style="transition-delay:.2s">
-      <div class="pcard-name">Scale</div>
-      <div class="pcard-price">
-        <span class="pcard-currency">R$</span>
-        <span class="pcard-amount">99</span>
-        <span class="pcard-period">/mês</span>
+      <div>
+        <a href="#" class="pmr-cta">Assinar agora →</a>
+        <p class="pmr-note">Sem taxa de setup · Sem fidelidade</p>
       </div>
-      <p class="pcard-desc">Para operações maiores</p>
-      <ul class="pcard-features">
-        <li>Produtos ilimitados</li>
-        <li>Reviews ilimitados</li>
-        <li>Importação automática</li>
-        <li>API de acesso</li>
-        <li>Suporte dedicado</li>
-      </ul>
-      <a href="#" class="pcard-cta outline">Falar com vendas</a>
     </div>
   </div>
 </section>
@@ -481,6 +474,32 @@ const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
 },{threshold:.1,rootMargin:'0px 0px -40px 0px'})
 document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el))
+
+// Pricing tabs
+document.querySelectorAll('.ptab').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'))
+    btn.classList.add('active')
+    const amt=document.getElementById('pmr-amount')
+    const tot=document.getElementById('pmr-total')
+    const sav=document.getElementById('pmr-save')
+    const per=document.getElementById('pmr-period')
+    amt.style.opacity='0'
+    setTimeout(()=>{
+      amt.textContent=btn.dataset.price
+      tot.textContent=btn.dataset.total
+      per.textContent=btn.dataset.period.toUpperCase()
+      if(btn.dataset.save){
+        sav.className='pmr-save'
+        sav.innerHTML='<svg width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>'+btn.dataset.save
+      } else {
+        sav.className='pmr-nosave'
+        sav.innerHTML=''
+      }
+      amt.style.opacity='1'
+    },120)
+  })
+})
 </script>
 </body>
 </html>
