@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 320px;
+      background: #060606;
+      color: #f0f0f0;
+      font-family: -apple-system, sans-serif;
+      font-size: 13px;
+      padding: 16px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .header h1 { font-size: 15px; font-weight: 700; }
+    .header span { font-size: 18px; }
+    .badge {
+      margin-left: auto;
+      font-size: 10px;
+      background: #f59e0b20;
+      color: #f59e0b;
+      border: 1px solid #f59e0b40;
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+    label {
+      display: block;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      background: #0f1117;
+      border: 1px solid #1e1e2e;
+      border-radius: 6px;
+      color: #f0f0f0;
+      font-size: 12px;
+      padding: 7px 10px;
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    input:focus { border-color: #f59e0b60; }
+    input::placeholder { color: #334155; }
+    .section-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      margin-top: 4px;
+    }
+    button {
+      width: 100%;
+      background: #f59e0b;
+      color: #000;
+      border: none;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      margin-top: 4px;
+    }
+    button:hover { opacity: 0.88; }
+    #status {
+      margin-top: 10px;
+      font-size: 11px;
+      text-align: center;
+      min-height: 16px;
+      color: #22c55e;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      margin: 12px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span>⭐</span>
+    <h1>VK Reviews</h1>
+    <div class="badge">v1.0</div>
+  </div>
+
+  <div class="section-title">Shopify</div>
+  <label>Loja (ex: ipf1gw-hb)</label>
+  <input id="shopifyStore" type="text" placeholder="minha-loja" autocomplete="off">
+
+  <label>Token Admin API</label>
+  <input id="shopifyToken" type="password" placeholder="shpat_..." autocomplete="off">
+
+  <hr class="divider">
+
+  <div class="section-title">Produto atual</div>
+  <label>Handle do produto</label>
+  <input id="productHandle" type="text" placeholder="rasteirinha-feminina" autocomplete="off">
+
+  <hr class="divider">
+
+  <div class="section-title">Backend (opcional)</div>
+  <label>URL da API</label>
+  <input id="vkApiUrl" type="text" placeholder="https://vkreviews-app.vercel.app" autocomplete="off">
+
+  <button id="saveBtn">Salvar configuracoes</button>
+  <div id="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "VK Reviews",
+  "version": "1.0.0",
+  "description": "Importa reviews da Shopee para sua loja Shopify com 1 clique",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://shopee.com.br/*",
+    "*://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://shopee.com.br/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "VK Reviews"
+  }
+}
